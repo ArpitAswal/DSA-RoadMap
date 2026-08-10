@@ -125,29 +125,31 @@ class RotateAnArray {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 5, 6 };
+        int[] arr1 = { 1, 2, 3, 4, 5, 6 };
+        int[] arr2 = { 1, 2, 3, 4, 5, 6 };
+        int[] arr3 = { 1, 2, 3, 4, 5, 6 };
         int d = 2;
 
         // Native Approach
-        rotateArr1(arr, d);
+        rotateArr1(arr1, d);
 
         System.out.println("Native Approach");
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i] + " ");
+        for (int i = 0; i < arr1.length; i++)
+            System.out.print(arr1[i] + " ");
         System.out.println();
 
-        rotateArr2(arr, d);
+        rotateArr2(arr2, d);
 
         System.out.println("Temp Array Approach");
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i] + " ");
+        for (int i = 0; i < arr2.length; i++)
+            System.out.print(arr2[i] + " ");
         System.out.println();
 
-        rotateArr3(arr, d);
+        rotateArr3(arr3, d);
 
         System.out.println("Reversal Algorithm Approach");
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i] + " ");
+        for (int i = 0; i < arr3.length; i++)
+            System.out.print(arr3[i] + " ");
         System.out.println();
     }
 }

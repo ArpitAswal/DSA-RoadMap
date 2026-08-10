@@ -106,6 +106,89 @@ class MajorityElements {
         return res;
     }
 
+    /// for one candidate, Majority Element for n/2 greater
+    static ArrayList<Integer> BoyerMooreVoting(int[] arr){
+        int candidate = arr[0];
+        int count =1;
+        int n = arr.length;
+        ArrayList<Integer> res = new ArrayList<>();
+
+        for(int i=1; i<arr.length; i++){
+            if(arr[i] == candidate){
+                count++;
+            } else{
+                count--;
+                if(count == 0){
+                    candidate = arr[i];
+                    count = 1;
+                }
+            }
+
+            if(count > n/2){
+                res.add(candidate);
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    /// for two candidate, Majority Elements for n/3 greater
+
+    static ArrayList<Integer> majorityElements(int[] arr){
+        int cand1 = 0;
+        int cand2 = 1;
+        int count1 = 0;
+        int count2 = 0;
+        int n = arr.length;
+
+
+        for(int num : arr){
+            if(num == cand1){
+                count1++;
+            } else if(num == cand2){
+                count2++;
+            } else if(count1 == 0){
+                cand1 = num;
+                count1 = 1;
+            } else if(count2 == 0){
+                cand2 = num;
+                count2 = 1;
+            } else{
+                count1--;
+                count2--;
+            }
+        }
+
+        count1 = 0;
+        count2 = 0;
+
+        for(int num : arr){
+            if(num == cand1){
+                count1++;
+            } else if(num == cand2){
+                count2++;
+            }
+        }
+
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        if(count1 > n/3){
+            res.add(cand1);
+        }
+        if(count2 > n/3){
+            res.add(cand2);
+        }
+
+         // If we have found two majority elements,
+            // we can stop our search
+            if (res.size() == 2) {
+                if (res.get(0) > res.get(1))
+                    java.util.Collections.swap(res, 0, 1);
+            }
+
+        return res;    
+    }
+
     public static void main(String[] args) {
         int[] arr = { 2, 2, 3, 1, 3, 2, 1, 1 };
 
@@ -122,5 +205,17 @@ class MajorityElements {
         ArrayList<Integer> ans = searchMajority(arr);
         for (int ele : ans)
             System.out.print(ele + " ");
+
+        System.out.println();
+
+        // Boyer-Moore voting
+        System.out.println("Boyer-Moore voting Approach");
+        ArrayList<Integer> ans1 = BoyerMooreVoting(arr);  
+        for (int ele : ans1) 
+         System.out.print(ele + " "); 
+         System.out.println();
+        ArrayList<Integer> ans2 = majorityElements(arr);  
+        for (int ele : ans2) 
+         System.out.print(ele + " ");
     }
 }
