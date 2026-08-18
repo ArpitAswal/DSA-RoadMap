@@ -18,6 +18,10 @@ class StarPatterns {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the pattern value n: ");
         int n = sc.nextInt();
+        System.out.println();
+        System.out.print("Enter the row and column values: ");
+        int r = sc.nextInt();
+        int c = sc.nextInt();
         sc.close();
 
         System.out.println("Pattern 1: Solid Square");
@@ -29,10 +33,10 @@ class StarPatterns {
         System.out.println("\nPattern 3: Inverted Right-Angled Triangle");
         pattern3(n);
 
-        System.out.println("\nPattern 4: Pyramid");
+        System.out.println("\nPattern 4: Full Pyramid Pattern");
         pattern4(n);
 
-        System.out.println("\nPattern 5: Inverted Pyramid");
+        System.out.println("\nPattern 5: Inverted Full Pyramid Pattern");
         pattern5(n);
 
         System.out.println("\nPattern 6: Diamond Pattern");
@@ -49,6 +53,21 @@ class StarPatterns {
 
         System.out.println("\nPattern 10: Hollow Square");
         pattern10(n);
+
+        System.out.println("\n Inverted Left Half Pyramid");
+        pattern11(n);
+
+        System.out.println("\n Left Half Pyramid Pattern");
+        pattern12(n);
+
+        System.out.println("\n Alphabet 'A' Pattern");
+        pattern13(n);
+
+        System.out.println("\n Hollow Rectangle Pattern");
+        pattern14(r, c);
+
+        System.out.println("\n Stair Case Patterns");
+        pattern15(n);
     }
 
     /**
@@ -121,7 +140,7 @@ class StarPatterns {
     }
 
     /**
-     * Pattern 4: Pyramid Pattern
+     * Pattern 4: Full Pyramid Pattern
      * Problem: For N = 5, prints a centered pyramid.
      * Output:
      *     *
@@ -149,7 +168,7 @@ class StarPatterns {
     }
 
     /**
-     * Pattern 5: Inverted Pyramid Pattern
+     * Pattern 5: Inverted Full Pyramid Pattern
      * Problem: For N = 5, prints an inverted pyramid.
      * Output:
      * *********
@@ -403,4 +422,191 @@ class StarPatterns {
             System.out.println();
         }
     }
+
+    /**
+     * Pattern 11: Inverted Left Half Pyramid
+     * Problem: For N = 5, prints an inverted left half pyramid.
+     * Output:
+     *  *****
+     *   ****
+     *    ***
+     *     **
+     *      *
+     * Explanation:
+     * - Row i (starts from N down to 1) has (N - i) leading spaces and i stars.
+     */
+    private static void pattern11(int n) {
+        // Outer loop controls the number of rows, starting from n down to 1
+        for (int i = n; i > 0; i--) {
+            // Inner loop prints leading space to align the stars to the right
+            for (int k = 0; k < n - i; k++) {
+                System.out.print(' ');
+            }
+            // Inner loop prints stars for the current row 
+            for (int j = 0; j < i; j++) {
+                System.out.print('*');
+            }
+            // Move to the next line after completing the current row
+            System.out.println();
+        }
+    }
+
+    /**
+     * Pattern 12: Left Half Pyramid Pattern
+     * Problem: For N = 5, prints a left half pyramid.
+     * Output:
+     *     *
+     *    **
+     *   ***
+     *  ****
+     * *****
+     * Explanation:
+     * - Row i (from 1 to N) has (N - i) leading spaces and i stars.
+     */
+    private static void pattern12(int n) {
+        // Outer loop controls the number of rows, starting from 1 up to n
+        for (int i = 1; i <= n; i++) {
+            // Inner loop prints leading space to align the stars to the right
+            for (int k = 0; k < n - i; k++) {
+                System.out.print(' ');
+            }
+            // Inner loop prints stars for the current row
+            for (int j = 0; j < i; j++) {
+                System.out.print('*');
+            }
+            // Move to the next line after completing the current row
+            System.out.println();
+        }
+    }
+   
+    /**
+     * Pattern 13: Alphabet 'A' Pattern
+     * Problem: For N = 5, prints the letter 'A' using stars.
+     * Output:
+     *  * 
+     * * *
+     * ***
+     * * *
+     * * *
+     * Explanation:
+     * - Top boundary (row 0) has hollow corners.
+     * - Left boundary (col 0) and right boundary (col N/2) are filled with stars.
+     * - Middle row (row N/2) is filled to form the horizontal bar.
+     */
+    private static void pattern13(int n) {
+        // Outer loop controls the height of letter 'A'
+        for (int i = 0; i < n; i++) {
+            // Inner loop controls the width of letter 'A'
+            for (int j = 0; j <= n / 2; j++) {
+                // Print star if on the boundary (top, left, right, or middle row)
+                if (i == 0 || j == 0 || j == n / 2 || i == n / 2) {
+                    // Hollow out the top-left and top-right corners for a rounded 'A'
+                    if (i == 0 && (j == 0 || j == n / 2)) {
+                        System.out.print(" ");
+                    } else {
+                        System.out.print("*");
+                    }
+                }
+                // Otherwise print spaces for the hollow interior
+                else {
+                    System.out.print(" ");
+                }
+            }
+            // Move to the next line after completing the current row
+            System.out.println();
+        }
+    }
+
+    /**
+     * Pattern 14: Hollow Rectangle Pattern
+     * Problem: For N = 4 rows, M = 16 columns prints a hollow rectangle.
+     * Output:
+     * ****************
+     * *              *
+     * *              *
+     * ****************
+     * Explanation:
+     * - Prints stars on boundary positions (first/last rows and columns) and spaces in between.
+     */
+    private static void pattern14(int r, int c) {
+        System.out.println("r-> " + r + " c-> " + c);
+        // Outer loop controls rows (from 1 to r)
+        for (int i = 1; i <= r; i++) {
+            // Inner loop controls columns (from 1 to c)
+            for (int j = 1; j <= c; j++) {
+                // Print stars at boundaries, spaces elsewhere
+                if (i == 1 || i == r || j == 1 || j == c) {
+                    System.out.print('*');
+                } else {
+                    System.out.print(' ');
+                }
+            }
+            // Move to next line
+            System.out.println();
+        }
+    }
+
+    /**
+     * Pattern 15: Stair Case Patterns
+     * Problem: For N = 6, prints two different staircase patterns.
+     * Output:
+     *  **
+     *  **
+     *  ****
+     *  ****
+     *  ******
+     *  ******
+     * 
+     *       ** 
+     *       ** 
+     *     **** 
+     *     **** 
+     *   ****** 
+     *   ****** 
+     * Explanation:
+     * - The first pattern prints stars in pairs matching the next even number.
+     * - The second pattern aligns the staircases to the right with leading spaces.
+     */
+    private static void pattern15(int n) {
+        // First Staircase Pattern (Left-aligned)
+        for (int i = 1; i <= n; i++) {
+            int k;
+            // Determine pairing level (round up to next even number)
+            if (i % 2 == 0) {
+                k = i;
+            } else {
+                k = i + 1;
+            }
+            // Print k stars
+            for (int j = 1; j <= k; j++) {
+                System.out.print('*');
+            }     
+            System.out.println();
+        }
+
+        System.out.println();
+
+        // Second Staircase Pattern (Right-aligned)
+        for (int i = 1; i <= n; i++) {
+            int k;
+            // Determine pairing level (round up to next even number)
+            if (i % 2 != 0) {
+                k = i + 1;
+            } else {
+                k = i;
+            }
+    
+            // Print leading spaces to right-align the stairs
+            for (int g = n; g > k; g--) {
+                System.out.print(" ");
+            }
+    
+            // Print k stars (each followed by a space for better formatting)
+            for (int j = 0; j < k; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+     
 }

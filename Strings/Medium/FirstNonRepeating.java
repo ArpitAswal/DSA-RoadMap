@@ -115,7 +115,7 @@ class FirstNonRepeating {
      *   - Uses true O(1) auxiliary space (fixed 256 array size regardless of string size n).
      *
      * Time Complexity  : O(n) - pass 1 takes n iterations, pass 2 takes at most n iterations.
-     * Space Complexity : O(1) - fixed array of size 256 (constant space).
+     * Space Complexity : O(MAX_CHAR) Space - fixed array of size 256 (constant space).
      */
     static char firstNonRepeatingOptimised(String s) {
         int[] freq = new int[256]; // Array to store frequencies of all 256 ASCII characters
